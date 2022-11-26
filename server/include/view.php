@@ -341,7 +341,7 @@ function getAllOrderItemsBYOrder($order_id){
 function getDailyReport(){
 	include 'connection.php';
 
-	$viewcat = "SELECT * FROM product_orders WHERE DAY(date_updated) = DAY(now())";
+	$viewcat = "SELECT * FROM product_orders join customer on customer.customer_id = product_orders.customer_id WHERE DAY(product_orders.date_updated) = DAY(now())";
 	return mysqli_query($con,$viewcat);
 }
 
@@ -350,7 +350,7 @@ function getWeeklyReport(){
 
 	$NewDate=Date('y:m:d', strtotime('-7 days'));
 
-	$viewcat = "SELECT * FROM product_orders WHERE NOT(date_updated < '$NewDate'  OR date_updated >  now())";
+	$viewcat = "SELECT * FROM product_orders join customer on customer.customer_id = product_orders.customer_id WHERE NOT(product_orders.date_updated < '$NewDate'  OR product_orders.date_updated >  now())";
 	return mysqli_query($con,$viewcat);
 }
 
@@ -359,7 +359,7 @@ function getMonthlyReport(){
 
 	$NewDate=Date('y:m:d', strtotime('-7 days'));
 
-	$viewcat = "SELECT * FROM product_orders WHERE MONTH(date_updated) = MONTH(now())";
+	$viewcat = "SELECT * FROM product_orders join customer on customer.customer_id = product_orders.customer_id WHERE MONTH(product_orders.date_updated) = MONTH(now())";
 	return mysqli_query($con,$viewcat);
 }
 
