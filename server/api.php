@@ -131,9 +131,6 @@ else if (isset($_GET['function_code']) && $_GET['function_code'] == 'addcontact'
 else if (isset($_GET['function_code']) && $_GET['function_code'] == 'addReview') {
     addReviews($_POST);
 }
-else if (isset($_GET['function_code']) && $_GET['function_code'] == 'addResevation') {
-    addResevation($_POST);
-}
 else if (isset($_GET['function_code']) && $_GET['function_code'] == 'addCustomer') {
     createCustomer($_POST);
 }

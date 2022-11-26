@@ -101,7 +101,9 @@ addtoCartProduct = (pid, price) => {
             console.log($data);
             if ($data === '"Fail"') {
                 window.location.href = 'admin/login.php';
-            } else {
+            } else if($data === '"Exist"'){
+                errorMessage("This Item Already Here"); 
+            }else{
                 successToastCart();
             }
         },

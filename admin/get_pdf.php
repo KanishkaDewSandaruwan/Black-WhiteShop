@@ -43,7 +43,7 @@ $pdf->Cell(80);
 $pdf->Cell(30,10,'TODAY SALES REPORT',2,0,'C');
 $pdf->Ln();
 $pdf->Cell(80);
-$pdf->Cell(30,10, date("Y/M"),2,0,'C');
+$pdf->Cell(30,10, date("Y/M/d/D"),2,0,'C');
 $pdf->Ln();
 $pdf->Ln();
 $pdf->BasicTable($header);

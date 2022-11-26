@@ -184,7 +184,14 @@ function getAllCart($customer_id){
 	return mysqli_query($con,$q1);
 }
 
+function checkCartwithProduct($pid){
+	include 'connection.php';
 
+	$q1= "SELECT * FROM cart join products on products.pid = cart.pid join customer on customer.customer_id = cart.customer_id WHERE cart.pid = '$pid'";
+	$result =  mysqli_query($con,$q1);
+	return mysqli_num_rows($result);
+
+}
 //customer
 
 function checkuserPassword($data){

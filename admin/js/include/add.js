@@ -259,7 +259,7 @@ addCustomer = (form) => {
                                                     if ($data > 0) {
                                                         errorMessage("This Customer Already Registerd!");
                                                     } else {
-                                                        successToastRedirect('login.php');
+                                                        successToastRedirectReg('login.php');
                                                     }
                                                 },
                                                 cache: false,

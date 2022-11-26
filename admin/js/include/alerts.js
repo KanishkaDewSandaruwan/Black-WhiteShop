@@ -30,6 +30,16 @@ function successToastRedirect(url) {
         }
     })
 }
+function successToastRedirectReg(url) {
+    iziToast.success({
+        timeout: 1000,
+        title: 'Saving..',
+        message: 'Successfully Registerd!',
+        onClosing: function () {
+           window.location.href = url;
+        }
+    })
+}
 function successToast() {
     iziToast.success({
         timeout: 1000,
