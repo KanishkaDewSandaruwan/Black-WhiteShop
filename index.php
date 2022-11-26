@@ -33,8 +33,8 @@
     <div class="container-fluid mb-5">
         <div class="row border-top px-xl-2">
             <div class="col-lg-3 d-none d-lg-block pt-3">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between mt-3 w-100 p-4"  style="background-color:#1c2841;color:#fff;"
-                    data-toggle="collapse" href="#navbar-vertical"
+                <a class="btn shadow-none d-flex align-items-center justify-content-between mt-3 w-100 p-4"
+                    style="background-color:#1c2841;color:#fff;" data-toggle="collapse" href="#navbar-vertical"
                     style="height: 65px; margin-top: -1px; padding: 0 30px;">
                     <h6 class="m-0 text-light">Categories</h6>
                     <i class="fa fa-angle-down text-light"></i>
@@ -47,20 +47,25 @@
                         while($row=mysqli_fetch_assoc($getall)){ 
                             $cat_id = $row['cat_id'];
                           
-
                             $getallCp2 = getAllSubCategory($cat_id);
                             $count_sub = mysqli_num_rows($getallCp2);
-                            if( $row2 = mysqli_fetch_assoc($getallCp2)){
+                            if($count_sub > 0){
+                                
+     
+                                    $getallCat = getAllSubCategory($cat_id);
 
-                            $getallCp3 = getAllItemsByParentCategory($row2['cat_id']);
-                            $getallCp2 = getAllSubCategory($cat_id);
-                            // echo $row2['çat_id'];
+                                    while($row3 = mysqli_fetch_assoc($getallCat)){ 
+                                        $cat_id2 = $row3['cat_id'];
+                                       
 
-                            if (mysqli_fetch_assoc($getallCp2) && mysqli_fetch_assoc($getallCp3)) {
-                                ?>
+                                    $getallCp3 = getAllItemsByParentCategory($cat_id2);
+                                    if ($row4 = mysqli_fetch_assoc($getallCp3)) {
+                                        ?>
+
+
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown"><?php echo $row['cat_name']; ?> <i
-                                    class="fa fa-angle-down float-right mt-1"></i></a>
+                            <a href="#" class="nav-link" data-toggle="dropdown"><?php echo $row['cat_name']; ?>
+                                <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
 
                                 <?php 
@@ -74,13 +79,13 @@
                                     if ($row4 = mysqli_fetch_assoc($getallCp3)) {
                                         ?>
                                 <a style="color: black;" href="shop.php?cat_id=<?php echo $cat_id2; ?>"
-                                    class="dropdown-item"><?php echo $row4['cat_name']; ?></a>
+                                    class="dropdown-item"><?php echo $row3['cat_name']; ?></a>
                                 <?php } } ?>
 
                             </div>
                         </div>
 
-                        <?php } } } ?>
+                        <?php } }  } }  ?>
 
                     </div>
                 </nav>
@@ -118,9 +123,11 @@
                             <img class="img-fluid" src="<?php echo $img_src; ?>" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3"><?php echo $res['header_title']; ?></h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4"><?php echo $row['slideshow_title']; ?></h3>
-                                    <a href="shop.php" class="btn btn-light py-2 px-3" >Shop Now</a>
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">
+                                        <?php echo $res['header_title']; ?></h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">
+                                        <?php echo $row['slideshow_title']; ?></h3>
+                                    <a href="shop.php" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -183,22 +190,28 @@
     <div class="container-fluid offer p-4 pt-5">
         <div class="row px-xl-1">
             <div class="col-md-6 pb-5">
-                <div class="position-relative  text-center text-md-right text-white mb-5 py-5 px-5" style="background-color:#191970 ;">
+                <div class="position-relative  text-center text-md-right text-white mb-5 py-5 px-5"
+                    style="background-color:#191970 ;">
                     <img src="<?php echo $banner_01_src; ?>" style="width:1200px;" class="p-0">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase  mb-3 text-light" ><?php echo $res['banner_01_desc']; ?></h5>
+                        <h5 class="text-uppercase  mb-3 text-light"><?php echo $res['banner_01_desc']; ?></h5>
                         <h1 class="mb-4 font-weight-semi-bold text-light"><?php echo $res['banner_01_title']; ?></h1>
-                        <a href="shop.php" class="  py-md-2 px-md-3 text-light" style="background-color: midnightblue;border:1px solid #fff;text-decoration:none;">Shop Now</a>
+                        <a href="shop.php" class="  py-md-2 px-md-3 text-light"
+                            style="background-color: midnightblue;border:1px solid #fff;text-decoration:none;">Shop
+                            Now</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 pb-1 ">
-            <div class="position-relative  text-center text-md-right text-white mb-2 py-5 px-5" style="background-color:#191970 ;">
+                <div class="position-relative  text-center text-md-right text-white mb-2 py-5 px-5"
+                    style="background-color:#191970 ;">
                     <img src="<?php echo $banner_02_src; ?>" style="width:1200px;" class="p-0">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase  mb-3 text-light" ><?php echo $res['banner_02_desc']; ?></h5>
+                        <h5 class="text-uppercase  mb-3 text-light"><?php echo $res['banner_02_desc']; ?></h5>
                         <h1 class="mb-4 font-weight-semi-bold text-light"><?php echo $res['banner_02_title']; ?></h1>
-                        <a href="shop.php" class="  py-md-2 px-md-3 text-light" style="background-color: midnightblue;border:1px solid #fff;text-decoration:none;">Shop Now</a>
+                        <a href="shop.php" class="  py-md-2 px-md-3 text-light"
+                            style="background-color: midnightblue;border:1px solid #fff;text-decoration:none;">Shop
+                            Now</a>
                     </div>
                 </div>
             </div>
@@ -262,27 +275,31 @@
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3 ">
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1 " >
-                <div class="d-flex align-items-center border mb-4 border border-none " style="padding: 30px;background-color:#1c2841;box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
+                <div class="d-flex align-items-center border mb-4 border border-none "
+                    style="padding: 30px;background-color:#1c2841;box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
                     <h1 class="fa fa-check text-warning m-0 mr-3"></h1>
                     <h5 class="font-weight-semi-bold m-0 text-light">Quality Product</h5>
                 </div>
-                
+
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
-                <div class="d-flex align-items-center border mb-4 border border-none " style="padding: 30px;background-color:#1c2841; box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
+                <div class="d-flex align-items-center border mb-4 border border-none "
+                    style="padding: 30px;background-color:#1c2841; box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
                     <h1 class="fa fa-shipping-fast text-warning m-0 mr-2"></h1>
                     <h5 class="font-weight-semi-bold m-0 text-light">Free Shipping</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
-                <div class="d-flex align-items-center border mb-4 border border-none " style="padding: 30px;background-color:#1c2841;box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
+                <div class="d-flex align-items-center border mb-4 border border-none "
+                    style="padding: 30px;background-color:#1c2841;box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
                     <h1 class="fas fa-exchange-alt text-warning m-0 mr-3"></h1>
                     <h5 class="font-weight-semi-bold m-0 text-light">14-Day Return</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
-                <div class="d-flex align-items-center border mb-4 border border-none " style="padding: 30px;background-color:#1c2841;box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
+                <div class="d-flex align-items-center border mb-4 border border-none "
+                    style="padding: 30px;background-color:#1c2841;box-shadow:0 1rem 2rem rgba(0,0,0,.5);">
                     <h1 class="fa fa-phone-volume text-warning m-0 mr-3"></h1>
                     <h5 class="font-weight-semi-bold m-0 text-light">24/7 Support</h5>
                 </div>
@@ -295,9 +312,9 @@
     <!-- Products Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-        <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">OUR  PRODUCTS</span></h2>
-        </div>
+            <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">OUR PRODUCTS</span></h2>
+            </div>
             <!-- <h2 class="heading">
                 <span class="qw"> - </span>
                 <span>O</span>
@@ -355,10 +372,10 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="detail.php?pid=<?php echo $pid; ?>" class="btn btn-sm text-dark p-0"><i
-                                class="fas fa-eye  mr-1 style="color:navy ;"></i>View Detail</a>
+                                class="fas fa-eye  mr-1 style=" color:navy ;"></i>View Detail</a>
                         <button onclick="addtoCartProduct(<?php echo $pid; ?>, <?php echo $row3['product_price']; ?>)"
-                            type="button" class="btn btn-sm text-dark p-0"><i
-                                class="fas fa-shopping-cart y mr-1" style="color:navy ;"></i>Add To Cart</button>
+                            type="button" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart y mr-1"
+                                style="color:navy ;"></i>Add To Cart</button>
                     </div>
                 </div>
             </div>

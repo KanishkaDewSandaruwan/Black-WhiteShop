@@ -16,17 +16,20 @@
                         while($row=mysqli_fetch_assoc($getall)){ 
                             $cat_id = $row['cat_id'];
                           
-
                             $getallCp2 = getAllSubCategory($cat_id);
                             $count_sub = mysqli_num_rows($getallCp2);
-                            if( $row2 = mysqli_fetch_assoc($getallCp2)){
+                            if($count_sub > 0){
+                                
+     
+                                    $getallCat = getAllSubCategory($cat_id);
 
-                            $getallCp3 = getAllItemsByParentCategory($row2['cat_id']);
-                            $getallCp2 = getAllSubCategory($cat_id);
-                            // echo $row2['çat_id'];
+                                    while($row3 = mysqli_fetch_assoc($getallCat)){ 
+                                        $cat_id2 = $row3['cat_id'];
+                                       
 
-                            if (mysqli_fetch_assoc($getallCp2) && mysqli_fetch_assoc($getallCp3)) {
-                                ?>
+                                    $getallCp3 = getAllItemsByParentCategory($cat_id2);
+                                    if ($row4 = mysqli_fetch_assoc($getallCp3)) {
+                                        ?>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown"><?php echo $row['cat_name']; ?> <i
                                     class="fa fa-angle-down float-right mt-1"></i></a>
@@ -49,7 +52,7 @@
                             </div>
                         </div>
 
-                        <?php } } } ?>
+                        <?php } }  } }  ?>
                     </div>
                 </nav>
             </div>
